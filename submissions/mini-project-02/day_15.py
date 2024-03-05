@@ -1,19 +1,19 @@
 import json
 import os
-from re import search
 
 def option_menu():
-    menu = {"1" : "Add Wesbite, Username and Password",
-            "2" : "View",
-            "3" : "Search",
-            "4" : "Delete",
-            "5" : "Update",
-            "6" : "Close"}
-    for num, func in menu: 
-        print(f"{num} - {func}")
+    menu = ["1 - Add Website, Username and Password",
+            "2 - View",
+            "3 - Search",
+            "4 - Delete",
+            "5 - Update",
+            "6 - Close"]
+    for num in menu: 
+        print(f"{num}")
 
-def manager_pass(menu_act, website):
-    with open('data.json','r') as file:
+def manager_pass(menu_act):
+    os.system('cls')
+    with open('data.json', 'r') as file:
         data = json.load(file)
 
     if menu_act == '1':
@@ -21,30 +21,75 @@ def manager_pass(menu_act, website):
         email = input ("Enter email: ")
         password = input ("Enter password: ")
 
-        if website in data:
-            data[website].append({'email': email, 'password': password})
+        new_data = {
+        website: [{
+            'email': email,
+            'password': password
+            }]
+        }
+        os.system('cls')
+        
+        if website in data: 
+            data[website].append({'email': email, 'password': password}) 
         else:
-            data[website]= [{'email': email, 'password': password}]
+            data.update(new_data)
 
+        with open('data.json', 'w') as f:
+            json.dump(data, f, indent=4)
+            
         print("Successfully Added!")
 
     elif menu_act == '2':
-        for num, funct in data.items():
-            print(f"Website: {num}")
-            for entry in funct:
-                print(f"    Email: {entry['email']} \n")
-                print(f"    Password: {entry['password']} \n")
+            for website, website_data in data.items():
+                print(f"Website: {website}")
+                for entry in website_data:
+                    print(f"    Email: {entry['email']} \n")
+                    print(f"    Password: {entry['password']} \n")
 
     elif menu_act == '3':
-        search_result = search(website, data)
-        if not search_result:
+        website = input("Enter website to search: ")
+        if website in data:
+            print("Website found!")
+        else:
             print("No website found!")
 
     elif menu_act == '4':
-        search_result = search(website, data )
-        if search_result:
-            val = get_valid_index(data[website])
-            data[website].pop(num)
-            if len(data[website]) == 0:
-                data.pop(website)
-            print("Successfully removed.")
+        website = input("Enter website to delete: ")
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+            if website in data:
+                del data[website]
+
+                with open('data.json', 'w') as file:
+                    json.dump(data, file, indent=4)
+                print("Successfully Removed!")
+                return True
+            else:
+                print("Website not found!")
+            return
+
+    elif menu_act == '5':
+        website = input("Enter website to update: ")
+        if website in data:
+            updated = input(" 'EMAIL' or 'PASSWORD': ").lower()
+            new_info = input(f"Enter your new {updated}: ")
+            data[website][updated] = new_info
+
+            with open('data.json', 'w') as f:
+                json.dump(data, f, indent=5)
+
+            print("Successfully updated!")
+
+        else:
+            print("No website found!")
+
+    elif menu_act == '6':
+            running = False
+            return running
+running = True
+
+while running:
+    print("=======>PASSWORD MANAGER<=======")
+    option_menu()
+    user_input = input("Enter a number: ")
+    manager_pass(user_input)
