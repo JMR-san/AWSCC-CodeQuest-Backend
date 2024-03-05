@@ -84,8 +84,8 @@ def manager_pass(menu_act):
             print("No website found!")
 
     elif menu_act == '6':
-            running = False
-            return running
+        exit()
+
 running = True
 
 while running:
