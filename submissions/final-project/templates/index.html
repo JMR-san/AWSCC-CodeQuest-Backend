@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Password Manager</h1>
+    
+    <form action="{{ url_for('add_password') }}" method="POST">
+        <input type="text" name="website" placeholder="Website" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Generate Password</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Website</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+        {% for password in passwords %}
+        <tr>
+            <td>{{ password['website'] }}</td>
+            <td>{{ password['email'] }}</td>
+            <td>{{ password['password'] }}</td>
+            <td>
+                <form action="/update_password/{{ loop.index0 }}" method="POST">
+                    <input type="text" name="website" placeholder="New Website" required>
+                    <input type="email" name="email" placeholder="New Email" required>
+                    <input type="password" name="password" placeholder="New Password" required>
+                    <button type="submit">Update</button>
+                </form>
+                <a href="/delete_password/{{ loop.index0 }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

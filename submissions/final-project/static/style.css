@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input,
+button {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#passwords {
+    margin-top: 2rem;
+    border: 1px solid #ccc;
+    padding: 1rem;
+}

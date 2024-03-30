@@ -16,5 +16,17 @@
             "email": "ZZZZION",
             "password": "SKYE"
         }
+    ],
+    "HAKDOG": [
+        {
+            "email": "JALALA",
+            "password": "9247"
+        }
+    ],
+    "2": [
+        {
+            "email": "3",
+            "password": "4"
+        }
     ]
 }

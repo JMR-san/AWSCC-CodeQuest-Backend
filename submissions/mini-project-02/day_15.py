@@ -50,6 +50,14 @@ def manager_pass(menu_act):
         website = input("Enter website to search: ")
         if website in data:
             print("Website found!")
+            data = json.load(f)
+            for key, val in data.items():
+                if key == website:
+                    print(f"Website: {key}")
+                    for i in range(len(val)):
+                        print(f"    {i+1} Email: {val[i]['email']}")
+                        print(f"      Password: {val[i]['password']}\n")
+                    return True
         else:
             print("No website found!")
 

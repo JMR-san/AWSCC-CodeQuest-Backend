@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/ajlag/OneDrive/Documents/GitHub/AWSCC-CodeQuest-Backend/submissions",
-      "program": "c:/Users/ajlag/OneDrive/Documents/GitHub/AWSCC-CodeQuest-Backend/submissions/build/Debug/outDebug",
+      "cwd": "c:/Users/ajlag/OneDrive/Documents/GitHub/AWSCC-CodeQuest-Backend/submissions/mini-project-02",
+      "program": "c:/Users/ajlag/OneDrive/Documents/GitHub/AWSCC-CodeQuest-Backend/submissions/mini-project-02/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
